@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, classification_report
 
-# Set up the Streamlit UI
+# Seting up the Streamlit UI
 st.set_page_config(page_title="Credit Risk Scorecard", layout="wide")
 st.title("📊 Credit Risk Scoring Dashboard")
 
-# Load Dataset
+# Loading Dataset
 @st.cache_data
 def load_data():
     url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
@@ -20,7 +20,7 @@ def load_data():
     df['Sex'] = df['Sex'].map({'male': 1, 'female': 0})
     return df
 
-# Train Model
+# Training Model
 @st.cache_resource
 def train_model(df):
     X = df.drop('Survived', axis=1)
@@ -36,7 +36,7 @@ def train_model(df):
 
     return model, X_test, y_test, y_pred, auc, report
 
-# Load data and model
+# Loading data and the model
 df = load_data()
 model, X_test, y_test, y_pred, auc, report = train_model(df)
 
